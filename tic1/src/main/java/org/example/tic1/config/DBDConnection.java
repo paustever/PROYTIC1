@@ -1,15 +1,14 @@
 package org.example.tic1.config;
+
 import java.sql.Connection;
-
+import java.sql.DriverManager;
+import java.sql.SQLException;
 public class DBDConnection {
-    #application.properties
+    private static final String URL = "jdbc:postgresql://10.252.62.237:5432/cine";
+    private static final String USER = "proyecto";
+    private static final String PASSWORD = "nuestroproyecto";
 
-#PostgreSQL Database connection settings
-    spring.datasource.url=jdbc:postgresql://10.252.62.237:5432/cine
-    spring.datasource.usrname=proyecto
-    spring.datasource.password=nuestroproyecto
-    spring.datasource.driver-class-name=org.postgresql.driver
-
-# Hibernate settings (if using JPA)
-    spring.jpa.database-platform=Korg.hibernate.dialect.PostgreSQLDialect
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASSWORD);
+    }
 }
